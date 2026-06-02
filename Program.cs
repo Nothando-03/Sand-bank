@@ -1,5 +1,10 @@
 ﻿using System;
 using System.Media;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
 
 namespace CybersecurityAwarenessBot
 {
@@ -8,21 +13,26 @@ namespace CybersecurityAwarenessBot
         static void Main(string[] args)
         {
             // ASCII Art Logo for "Cybersecurity Awareness Bot"
+            Console.ForegroundColor = ConsoleColor.DarkBlue;
             Console.WriteLine(@"
-   _____                      _            
-  / ____|                    | |           
- | |  __  ___  _   _  __ _  | |__    ___  
- | | |_ |/ _ \| | | |/ _` | | '_ \  / __| 
- | |__| | (_) | |_| | (_| | | | | || (__  
-  \_____|\___/ \__, |\__,_| |_| |_| \___| 
-               __/ |                      
-              |___/     Cybersecurity Awareness Bot     
+    .--------.
+   / .------. \         [ SAFE ]
+  | /        \ |     
+  ||          ||         SECURE_
+  | \________/ |     ==============
+  .------------.     
+  | [======]   |    ""Guard your data,
+  |   .----.   |     secure your future.""
+  |   | () |   |     
+  |   '----'   |     
+  '------------'   Cybersecurity Awareness Bot     
             ");
-            Console.WriteLine("======================================="); int headerLineLength = 78; int logoWidth = 82;
+            Console.ResetColor();
+            Console.WriteLine("======================================="); int headerLineLength = 80; int logoWidth = 82;
             // Play recorded voice greeting (place greeting.wav in output directory)
             try
             {
-                using (var player = new SoundPlayer("greeting.wav"))
+                using (var player = new SoundPlayer("\"C:\\Users\\mziny\\Music\\WhatsApp Audio 2026-06-02 at 4.38.26 AM.mpeg\""))
                 {
                     player.PlaySync(); // Synchronous play to hear before proceeding [web:73][web:74]
                 }
@@ -33,20 +43,23 @@ namespace CybersecurityAwarenessBot
             }
 
             // Get user name
-            Console.Write("Hello! What's your name? ");
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Console.Write("Hello! Welcome to the CyberSecurity Awareness Chatbot. What is your name?: ");
             string userName = Console.ReadLine()?.Trim();
             if (string.IsNullOrEmpty(userName))
             {
                 userName = "User";
             }
 
-            Console.WriteLine($"\nHi {userName}! Welcome to the Cybersecurity Awareness Bot.[web:70]");
+            Console.WriteLine($"\nHi {userName}! Welcome to the Cybersecurity Awareness Bot.");
 
             // Chat loop
             while (true)
             {
-                Console.Write($"\n{userName}, ask me about cybersecurity (or 'exit'): ");
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.Write($"\n{userName}, Ask me anything (type 'exit' to quit): ");
                 string input = Console.ReadLine()?.Trim().ToLower();
+                Console.ForegroundColor = ConsoleColor.DarkRed;
 
                 if (string.IsNullOrEmpty(input))
                 {
@@ -56,7 +69,7 @@ namespace CybersecurityAwarenessBot
 
                 if (input == "exit")
                 {
-                    Console.WriteLine($"Goodbye {userName}! Stay safe online.");
+                    Console.WriteLine($"Goodbye {userName}! Do not forget to stay safe online!");
                     break;
                 }
 
@@ -65,11 +78,12 @@ namespace CybersecurityAwarenessBot
             }
         }
 
+
         static string GetResponse(string input, string userName)
         {
             if (input.Contains("how are you"))
             {
-                return $"I'm great, {userName}! Ready to help with cybersecurity tips.";
+                return $"I'm a chatbot, I do not have feelings {userName}! Ready to help with cybersecurity awareness tips.";
             }
             else if (input.Contains("purpose") || input.Contains("what's your purpose"))
             {
@@ -81,15 +95,15 @@ namespace CybersecurityAwarenessBot
             }
             else if (input.Contains("password") || input.Contains("passwords"))
             {
-                return $"{userName}, for password safety: Use unique, strong passphrases (e.g., CoffeeTreeHouse#91) with uppercase, lowercase, numbers, symbols. Avoid writing them down, reuse, or simple ones like '123456'. Enable MFA everywhere. Use a password manager.[web:88]";
+                return $"{userName},A strong password should be at least 8-12 characters long and include a mix of uppercase letters, lowercase letters, numbers, and special characters. ";
             }
             else if (input.Contains("phish") || input.Contains("phishing"))
             {
-                return $"{userName}, phishing tricks you via fake emails/links to steal info. Check sender, hover links (don't click), look for HTTPS. In SA, phishing causes 52% of incidents—verify before acting![web:79][cite:72]";
+                return $"{userName}, Phishing is a form of social engineering in which cybercriminals use deceptive messages, emails, text messages, phone calls, or fake websites to manipulate victims into sharing personal data such as passwords, credit card numbers, or banking information, or to perform actions that compromise security.";
             }
             else if (input.Contains("brows") || input.Contains("browsing") || input.Contains("safe browsing"))
             {
-                return $"{userName}, safe browsing: Stick to HTTPS sites, use ad-blockers, update browser/OS. Avoid suspicious downloads/links. Enable click-to-play for plugins.";
+                return $"{userName}, Safe browsing refers to the combination of tools, practices, and behaviors that help users avoid online threats such as malware, phishing, spyware, ransomware, and malicious websites.";
             }
             else
             {
